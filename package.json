@@ -1,0 +1,21 @@
+{
+  "name": "friendlybot",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "dependencies": {
+    "@discordjs/opus": "^0.5.0",
+    "@joshdb/core": "^1.2.1",
+    "@joshdb/sqlite": "^1.1.7",
+    "discord.js": "^12.5.3",
+    "youtube-audio-stream": "^0.3.7",
+    "youtube-search": "^1.1.6"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "MIT"
+}
