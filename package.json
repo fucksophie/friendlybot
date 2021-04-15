@@ -8,6 +8,8 @@
     "@joshdb/core": "^1.2.1",
     "@joshdb/sqlite": "^1.1.7",
     "discord.js": "^12.5.3",
+    "request": "^2.88.2",
+    "request-promise": "^4.2.6",
     "youtube-audio-stream": "^0.3.7",
     "youtube-search": "^1.1.6"
   },

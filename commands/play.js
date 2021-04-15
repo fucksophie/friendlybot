@@ -39,6 +39,7 @@ module.exports = async (client, message, args) => {
         
         dispatcher.on("finish", async () => {
             await db.delete(message.guild.id);
+            connection.disconnect();
 
             message.channel.send(new Discord.MessageEmbed().setTitle(`Stopped playing ${videos[0].title}`));
         })

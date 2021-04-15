@@ -15,7 +15,7 @@ module.exports = async (client, message, args) => {
 
         message.channel.send(new Discord.MessageEmbed().setTitle(`Stopped playing ${guild.playing.title}`));
 
-        voice.dispatcher.end();
+        voice.disconnect();
     } else {
         message.channel.send(":x: | I am not in a voice channel.")
     }
