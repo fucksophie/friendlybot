@@ -1,5 +1,7 @@
 {
     "token": "discord token",
     "prefix": "!",
-    "yt": "youtube api v3 key credentials"
+    "yt": "youtube api v3 key credentials",
+    "coin": "emoji for the economy",
+    "owner": "your id"
 }

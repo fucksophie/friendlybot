@@ -3,7 +3,9 @@ const fs = require("fs");
 
 const client = new Discord.Client();
 const config = require("./config.json");
-const commands = fs.readdirSync("./commands").map(command => command.split(".")[0]);
+const utils = require("./util");
+
+const commands = (new utils.Utils()).getCommands("./commands");
 
 client.on('ready', () => {
     console.log(`Logged in as ${client.user.tag}!`);
@@ -18,10 +20,10 @@ client.on('message', async message => {
 
     if(command.startsWith(config.prefix)) command = command.substring(config.prefix.length); else return;
 
-    if(commands.includes(command)) {
-        const node_command = require("./commands/" + command);
+    const node_command = commands.find(e => e.name == command);
 
-        node_command(client, message, args);
+    if(node_command) {
+        node_command.run(client, message, args);
     }
 });
 
