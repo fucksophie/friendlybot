@@ -5,7 +5,7 @@ const round = (number, decimalPlaces) => Number(Math.round(number + "e" + decima
 
 module.exports = {
     name: "cryptonote",
-    category: "Crypto",
+    category: "Miscellaneous",
     run: async (client, message, args) => {
         const error = ":x: | Format: cryptonote [user]";
 
@@ -28,12 +28,14 @@ module.exports = {
     
         const cryptonoteembed = new Discord.MessageEmbed()
             .setTitle(`${args[0]}'s Cryptonote Status`)
-            .addField("working towards ", `${round(stats.rewardProgress, 4)}wow`, true)
-            .addField("h/s", `${round(stats.hashRate, 4)}`, true)
-            .addField("ever owed", `${round(stats.owed, 4)}wow`, true)
-            .addField("paid in total", `${round(stats.paid, 4)}wow`, true)
-            .addField("donating", stats.donate < 0.5 ? `${stats.donate} 😢` : `${stats.donate} 🆒`, true)
-            .addField("amount of rigs", stats.rigs.length, true);
+            .addFields([
+                {name: "working towards ", value: `${round(stats.rewardProgress, 4)}wow`, inline: true},
+                {name: "h/s", value: `${round(stats.hashRate, 4)}`, inline: true},
+                {name: "ever owed", value: `${round(stats.owed, 4)}wow`, inline: true},
+                {name: "paid in total", value: `${round(stats.paid, 4)}wow`, inline: true},
+                {name: "donating", value: stats.donate < 0.5 ? `${stats.donate} 😢` : `${stats.donate} 🆒`, inline: true},
+                {name: "amount of rigs", value: stats.rigs.length, inline: true}
+            ])
     
         message.channel.send(cryptonoteembed)
     }
