@@ -39,32 +39,5 @@ module.exports = {
             ]);
 
         message.channel.send(minecraftembed)
-
-        /*
-        if(account.message) {
-            message.channel.send(error);
-            return;
-        }
-
-        const repos = await rp({
-            method: 'GET',
-            uri: account.repos_url,
-            json: true,
-            gzip: true,
-            headers: {'user-agent': "friendlybot"}
-        })
-        
-        const minecraftembed = new Discord.MessageEmbed()
-            .setTitle(`${account.login}'s profile`)
-            .addFields([
-                {name: "repos", value: repos.map(e => e.name).join(", "), inline: true},
-                {name: "created at", value: account.created_at.replace(/T/, ' ').replace(/\..+/, ''), inline: true},
-                {name: "followers", value: account.followers, inline: true},
-                {name: "following", value: account.following, inline: true}           
-            ])
-            .setThumbnail(account.avatar_url)
-
-        message.channel.send(cryptonoteembed)
-        */
     }
 }
