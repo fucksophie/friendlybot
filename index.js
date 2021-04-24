@@ -7,10 +7,12 @@ const utils = require("./util");
 
 const commands = (new utils.Utils()).getCommands("./commands");
 
+client.music = [];
+
 client.on('ready', () => {
     console.log(`Logged in as ${client.user.tag}!`);
     
-    client.user.setActivity(config.prefix + "help" + (fs.existsSync(".git/FETCH_HEAD") ? " | " + fs.readFileSync(".git/FETCH_HEAD").toString().split(" ")[0].split("\t")[0] : "")); // CryptoAggregator
+    client.user.setActivity(config.prefix + "help" + (fs.existsSync(".git/FETCH_HEAD") ? " | " + fs.readFileSync(".git/FETCH_HEAD").toString().split(" ")[0].split("\t")[0] : ""));
 });
 
 client.on('message', async message => {

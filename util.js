@@ -1,6 +1,9 @@
 const fs = require("fs");
 const path = require("path");
 const Josh = require("@joshdb/core");
+const Discord = require('discord.js');
+const ytas = require('youtube-audio-stream');
+
 
 class Utils {
     getCommands(dir) {
@@ -57,4 +60,34 @@ class Friendlycoin {
     }
 }
 
-module.exports = {Friendlycoin, Utils}
+function play(connection, message, client) {
+    let server = client.music[message.guild.id];
+
+    server.dispatcher = connection.play(ytas(server.queue[0].link, {filter: 'audioonly', quality: 'highestaudio', highWaterMark: 1<<25}), {highWaterMark: 1});
+    
+    connection.voice.setSelfDeaf(true);
+    
+    server.dispatcher.on("start", async () => {
+        message.channel.send(
+            new Discord.MessageEmbed()
+                .setTitle(`Playing \`${server.queue[0].title}\``)
+                .setDescription(`Video posted by ${server.queue[0].channelTitle}`)
+                .setThumbnail(server.queue[0].thumbnails.default.url)
+        );
+    })
+    
+    server.dispatcher.on("finish", function () {
+        server.queue.shift();
+
+        if (server.queue[0]) {
+            play(connection, message, client);
+        } else {
+            message.channel.send(":x: | Queue is empty.")
+            connection.disconnect();
+            client.music[message.guild.id] = {queue: []};
+        };
+
+    });
+}
+
+module.exports = {Friendlycoin, Utils, play}
